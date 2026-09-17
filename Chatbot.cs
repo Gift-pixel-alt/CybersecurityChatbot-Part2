@@ -41,13 +41,19 @@ namespace CybersecurityChatbot_Part2
             }
 
             // Phishing
-            if (message.Contains("phishing"))
+            if (message.Contains("phishing") ||
+    message.Contains("phishing email") ||
+    message.Contains("phishing message") ||
+    message.Contains("fake email") ||
+    message.Contains("fake message"))
             {
                 return "Phishing is a scam where criminals pretend to be a trusted person or organisation to steal information. Check links carefully and never share passwords or OTPs.";
             }
 
             // Passwords
-            if (message.Contains("password"))
+            if (message.Contains("password") ||
+     message.Contains("passcode") ||
+     message.Contains("login password"))
             {
                 return "Use a long and unique password for each account. Avoid using your name, birthday or other personal information. A password manager can also help.";
             }
@@ -60,7 +66,9 @@ namespace CybersecurityChatbot_Part2
             }
 
             // Scams
-            if (message.Contains("scam"))
+            if (message.Contains("scam") ||
+    message.Contains("fraud") ||
+    message.Contains("fraudulent"))
             {
                 return "Be careful of messages that create urgency or ask for money, passwords, PINs or OTPs. Verify requests using official contact details.";
             }
