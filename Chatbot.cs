@@ -93,6 +93,34 @@ namespace CybersecurityChatbot_Part2
                 return "Protect your personal information by limiting what you share online, using strong privacy settings and avoiding unknown websites and messages.";
             }
 
+            // Public Wi-Fi
+            if (message.Contains("public wi-fi") ||
+                message.Contains("public wifi") ||
+                message.Contains("public wireless"))
+            {
+                return "Avoid accessing sensitive accounts on public Wi-Fi. If you must use it, use a trusted VPN, avoid unknown networks and make sure your device is protected.";
+            }
+
+            // Identity theft
+            if (message.Contains("identity theft") ||
+                message.Contains("identity"))
+            {
+                return "Identity theft happens when criminals use your personal information without permission. Protect yourself by keeping your ID, passwords, banking details and other personal information private.";
+            }
+
+            // Ransomware
+            if (message.Contains("ransomware"))
+            {
+                return "Ransomware is malware that can lock or encrypt your files and demand payment. Keep backups, update your software and avoid suspicious links and downloads.";
+            }
+
+            // Banking safety
+            if (message.Contains("banking") ||
+                message.Contains("bank account"))
+            {
+                return "For safer online banking, use official banking apps or websites, never share your PIN or OTP, avoid banking on public Wi-Fi and report suspicious transactions immediately.";
+            }
+
             // Default response
             return $"I'm not sure about that, {UserName}. Try asking me about phishing, passwords, scams, safe browsing, malware, social engineering or privacy.";
         }
