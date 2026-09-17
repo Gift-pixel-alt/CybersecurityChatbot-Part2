@@ -1,0 +1,107 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+
+
+namespace CybersecurityChatbot_Part2
+{
+    public partial class MainWindow : Window
+    {
+        private readonly Chatbot chatbot = new Chatbot();
+
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            ChatDisplay.Text =
+                "🤖 Chatbot: Welcome to the Cybersecurity Awareness Assistant!\n\n" +
+                "Please enter your name in the box below to get started.\n\n";
+        }
+
+        private void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            string input = UserInput.Text.Trim();
+
+            // Validate empty input
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                ChatDisplay.Text +=
+                    "🤖 Chatbot: Please enter something before sending.\n\n";
+
+                return;
+            }
+
+            // Get user's name
+            if (string.IsNullOrWhiteSpace(chatbot.UserName))
+            {
+                chatbot.UserName = input;
+
+                ChatDisplay.Text +=
+                    $"👤 You: {input}\n\n" +
+                    $"🤖 Chatbot: Nice to meet you, {chatbot.UserName}! " +
+                    "I can help you learn about cybersecurity.\n\n" +
+                    "You can ask me about phishing, passwords, scams, " +
+                    "safe browsing, malware, social engineering and privacy.\n\n";
+
+                UserInput.Clear();
+                return;
+            }
+
+            // Exit
+            if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+            {
+                ChatDisplay.Text +=
+                    $"👤 You: {input}\n\n" +
+                    $"🤖 Chatbot: Thank you for using the Cybersecurity Awareness Assistant, {chatbot.UserName}!\n\n" +
+                    "Stay safe online and think before you click.\n\n";
+
+                UserInput.Clear();
+                return;
+            }
+
+            string response = chatbot.GetResponse(input);
+
+            ChatDisplay.Text +=
+                $"👤 You: {input}\n\n" +
+                $"🤖 Chatbot: {response}\n\n";
+
+            UserInput.Clear();
+        }
+
+       
+
+        private void TopicButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.Button button)
+            {
+                string question = button.Tag?.ToString() ?? "";
+
+               string response = chatbot.GetResponse(question);
+
+                ChatDisplay.Text +=
+                    $"👤 You selected: {button.Content}\n\n" +
+                    $"🤖 Chatbot: {response}\n\n";
+            }
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChatDisplay.Text =
+                "🤖 Chatbot: Welcome to the Cybersecurity Awareness Assistant!\n\n" +
+                "Please enter your name in the box below to get started.\n\n";
+
+            chatbot.UserName = "";
+            UserInput.Clear();
+        }
+
+        private void UserInput_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                SendButton_Click(SendButton, new RoutedEventArgs());
+                e.Handled = true;
+            }
+        }
+    }
+}

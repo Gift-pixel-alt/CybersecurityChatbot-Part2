@@ -1,0 +1,239 @@
+﻿<Window x:Class="CybersecurityChatbot_Part2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cybersecurity Awareness Assistant"
+        Height="650"
+        Width="950"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <Border Grid.Row="0"
+                Padding="15"
+                CornerRadius="10"
+                Background="#172554">
+
+            <StackPanel>
+
+                <TextBlock Text="🔐 CYBERSECURITY AWARENESS ASSISTANT"
+                           Foreground="White"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"/>
+
+                <TextBlock Text="Stay Safe • Think Before You Click"
+                           Foreground="#BFDBFE"
+                           FontSize="14"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,10"/>
+
+                <TextBlock Text="╔════════════════════════════╗&#10;║     CYBERSECURITY          ║&#10;╚════════════════════════════╝"
+                           Foreground="#67E8F9"
+                           FontSize="14"
+                           FontFamily="Consolas"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"/>
+
+                <TextBlock Text="🔒  SECURE • ALERT • PROTECTED  🔒"
+                           Foreground="White"
+                           FontSize="13"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,0"/>
+
+            </StackPanel>
+
+        </Border>
+
+        <!-- WELCOME MESSAGE -->
+        <Border Grid.Row="1"
+                Margin="0,10,0,0"
+                Padding="10"
+                Background="#E0F2FE"
+                CornerRadius="8">
+
+            <TextBlock Text="👋 Welcome! Enter your name below to begin your cybersecurity awareness session."
+                       FontSize="14"
+                       Foreground="#0F172A"
+                       HorizontalAlignment="Center"
+                       TextWrapping="Wrap"/>
+
+        </Border>
+
+        <!-- CHAT AREA -->
+        <Grid Grid.Row="2"
+              Margin="0,15,0,15">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="260"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Chat Area -->
+            <Border Grid.Column="0"
+                    Padding="15"
+                    BorderBrush="#94A3B8"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Background="#F8FAFC">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+
+                    <TextBlock x:Name="ChatDisplay"
+                               FontSize="16"
+                               TextWrapping="Wrap"
+                               Foreground="#1E293B"
+                               LineHeight="28"/>
+
+                </ScrollViewer>
+
+            </Border>
+
+            <!-- Cybersecurity Tips -->
+            <Border Grid.Column="1"
+                    Margin="15,0,0,0"
+                    Padding="15"
+                    Background="#172554"
+                    CornerRadius="10">
+
+                <StackPanel>
+
+                    <TextBlock Text="🛡️ CYBERSECURITY TIPS"
+                               Foreground="White"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,15"/>
+
+                    <TextBlock Text="🔑 Use strong, unique passwords."
+                               Foreground="White"
+                               FontSize="14"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,12"/>
+
+                    <TextBlock Text="🔐 Never share your OTP or PIN."
+                               Foreground="White"
+                               FontSize="14"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,12"/>
+
+                    <TextBlock Text="🔗 Check links before clicking."
+                               Foreground="White"
+                               FontSize="14"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,12"/>
+
+                    <TextBlock Text="💻 Keep your software updated."
+                               Foreground="White"
+                               FontSize="14"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,12"/>
+
+                    <TextBlock Text=" Be careful with suspicious messages."
+                               Foreground="White"
+                               FontSize="14"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,12"/>
+
+                    <TextBlock Text="🌐Avoid suspicious downloads."
+                               Foreground="White"
+                               FontSize="14"
+                               TextWrapping="Wrap"/>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+
+        <!-- INPUT AREA -->
+        <Grid Grid.Row="3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="110"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="UserInput"
+                     Grid.Column="0"
+                     Height="45"
+                     FontSize="16"
+                     Padding="10"
+                     VerticalContentAlignment="Center"
+                     ToolTip="Type your cybersecurity question"
+                     KeyDown="UserInput_KeyDown"/>
+
+
+            <Button x:Name="SendButton"
+                    Grid.Column="1"
+                    Content="SEND"
+                    Height="45"
+                    Margin="10,0,0,0"
+                    FontWeight="Bold"
+                    Click="SendButton_Click"/>
+
+            <Button x:Name="ClearButton"
+                    Grid.Column="2"
+                    Content="CLEAR"
+                    Height="45"
+                    Margin="10,0,0,0"
+                    FontWeight="Bold"
+                    Click="ClearButton_Click"/>
+
+        </Grid>
+
+        <!-- TOPIC BUTTONS -->
+        <WrapPanel Grid.Row="4"
+                   HorizontalAlignment="Center"
+                   Margin="0,12,0,0">
+
+            <Button Content="Phishing"
+                    Tag="What is phishing?"
+                    Click="TopicButton_Click"
+                    Margin="5"
+                    Padding="15,8"/>
+
+            <Button Content="Passwords"
+                    Tag="How should I protect my password?"
+                    Click="TopicButton_Click"
+                    Margin="5"
+                    Padding="15,8"/>
+
+            <Button Content="Scams"
+                    Tag="How can I avoid online scams?"
+                    Click="TopicButton_Click"
+                    Margin="5"
+                    Padding="15,8"/>
+
+            <Button Content="Safe Browsing"
+                    Tag="How can I browse safely?"
+                    Click="TopicButton_Click"
+                    Margin="5"
+                    Padding="15,8"/>
+
+            <Button Content="Malware"
+                    Tag="What is malware?"
+                    Click="TopicButton_Click"
+                    Margin="5"
+                    Padding="15,8"/>
+
+            <Button Content="Privacy"
+                    Tag="How can I protect my privacy?"
+                    Click="TopicButton_Click"
+                    Margin="5"
+                    Padding="15,8"/>
+
+        </WrapPanel>
+    </Grid>
+
+</Window>
