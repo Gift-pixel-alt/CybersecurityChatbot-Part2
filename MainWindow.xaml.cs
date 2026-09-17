@@ -71,20 +71,28 @@ namespace CybersecurityChatbot_Part2
 
        
 
-        private void TopicButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is System.Windows.Controls.Button button)
-            {
-                string question = button.Tag?.ToString() ?? "";
+       private void TopicButton_Click(object sender, RoutedEventArgs e)
+{
+    if (string.IsNullOrWhiteSpace(chatbot.UserName))
+    {
+        ChatDisplay.Text +=
+            "🤖 Chatbot: Please enter your name first before selecting a topic.\n\n";
 
-               string response = chatbot.GetResponse(question);
+        UserInput.Focus();
+        return;
+    }
 
-                ChatDisplay.Text +=
-                    $"👤 You selected: {button.Content}\n\n" +
-                    $"🤖 Chatbot: {response}\n\n";
-            }
-        }
+    if (sender is System.Windows.Controls.Button button)
+    {
+        string question = button.Tag?.ToString() ?? "";
 
+        string response = chatbot.GetResponse(question);
+
+        ChatDisplay.Text +=
+            $"👤 You selected: {button.Content}\n\n" +
+            $"🤖 Chatbot: {response}\n\n";
+    }
+}
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             ChatDisplay.Text =
