@@ -180,6 +180,10 @@
                     Height="45"
                     Margin="10,0,0,0"
                     FontWeight="Bold"
+                    Background="#2563EB"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Cursor="Hand"
                     Click="SendButton_Click"/>
 
             <Button x:Name="ClearButton"
@@ -188,6 +192,10 @@
                     Height="45"
                     Margin="10,0,0,0"
                     FontWeight="Bold"
+                    Background="#64748B"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Cursor="Hand"
                     Click="ClearButton_Click"/>
 
         </Grid>
